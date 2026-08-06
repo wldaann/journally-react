@@ -1,16 +1,80 @@
-# React + Vite
+# 📖 Journally
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Daily Journal & Reflection web application built with React and Tailwind CSS.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🌐 Live Demo
 
-## React Compiler
+🔗 https://journally-react-7wwn.vercel.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📝 Create Journal
+- ✏️ Edit Journal
+- 🗑 Delete Journal
+- ❤️ Favorite Journal
+- 🔍 Search Journal
+- 😊 Filter by Mood
+- 🏷 Filter by Tag
+- 📅 Sort Journal
+- 📊 Statistics Dashboard
+- 📄 Export Journal to PDF
+- 📱 Responsive Design
+
+---
+
+## 🛠 Tech Stack
+
+- React
+- Vite
+- Tailwind CSS
+- React Router DOM
+- Recharts
+- jsPDF
+- React Toastify
+
+---
+
+## 🚀 Installation
+
+```bash
+git clone https://github.com/wldaann/journally-react.git
+
+cd journally-react
+
+npm install
+
+npm run dev
+```
+
+---
+
+## 📂 Folder Structure
+
+```
+src
+│
+├── components
+├── pages
+├── services
+├── utils
+├── data
+│
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## 👨‍💻 Author
+
+GitHub
+
+https://github.com/wldaann
+
+---
+
+Made with ❤️ using React & Tailwind CSS
