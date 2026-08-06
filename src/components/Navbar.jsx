@@ -15,7 +15,7 @@ function Navbar() {
           className="cursor-pointer"
         >
 
-          <h1 className="text-3xl font-bold text-slate-900">
+          <h1 className="text-3xl font-bold text-slate-900 transition hover:text-blue-600">
             📖 Journally
           </h1>
 

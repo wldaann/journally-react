@@ -83,6 +83,16 @@ const handleDelete = (id) => {
   setJournals(getJournals());
 };
 
+const hour = new Date().getHours();
+
+let greeting = "Good Evening 🌙";
+
+if (hour >= 5 && hour < 12) {
+  greeting = "Good Morning ☀️";
+} else if (hour >= 12 && hour < 18) {
+  greeting = "Good Afternoon 🌤️";
+}
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
@@ -101,12 +111,12 @@ const handleDelete = (id) => {
       </p>
 
       <h2 className="mt-4 text-4xl font-bold">
-  Welcome Back 👋
+  {greeting} 👋
 </h2>
 
 <p className="mt-4 max-w-2xl text-slate-300 leading-8">
-  Capture your ideas, reflect on your journey,
-  and build a better version of yourself every day.
+  Capture your daily thoughts, organize your memories,
+and build a better version of yourself every day.
 </p>
 
     </div>
