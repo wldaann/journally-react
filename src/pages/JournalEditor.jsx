@@ -178,7 +178,7 @@ focus:shadow-md
 
             <textarea
               rows="6"
-              maxLength={1000}  
+              maxLength={10000}  
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Apa yang terjadi hari ini? Ceritakan pengalaman, pelajaran, atau perasaanmu..."
@@ -200,6 +200,7 @@ focus:ring-4
 focus:ring-blue-100
 "
             />
+
           </div>
 <div className="mt-2 flex justify-end">
   <p
@@ -209,7 +210,7 @@ focus:ring-blue-100
         : "text-gray-400"
     }`}
   >
-    {content.length} / 1000 karakter
+    {content.length} / 10000
   </p>
 </div>
           <div>
