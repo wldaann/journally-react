@@ -1,80 +1,146 @@
-# 📖 Journally
+# Journally
 
-A modern Daily Journal & Reflection web application built with React and Tailwind CSS.
+> A simple and modern daily journal & reflection web application built with React and Tailwind CSS.
 
----
+Journally is a personal journaling application designed to help users write, organize, and reflect on their daily experiences in a clean and comfortable interface.
+# Features
 
-## 🌐 Live Demo
+- 📝 Create, edit, and delete daily journals
+- 😊 Mood selection for each journal
+- 🏷️ Journal tagging and filtering
+- 🔍 Search journals by title
+- ↕️ Sort journals by newest, oldest, A–Z, and Z–A
+- ❤️ Favorite journals
+- 📸 Upload, preview, replace, and delete journal images
+- 📄 Export journals to PDF
+- 📊 Daily journal summary
+- 💾 Local data persistence using browser Local Storage
+- 📱 Responsive design for desktop and mobile devices
+- ✍️ Support for journal content up to 10,000 characters
 
-🔗 https://journally-react-7wwn.vercel.app
-
----
-
-## ✨ Features
-
-- 📝 Create Journal
-- ✏️ Edit Journal
-- 🗑 Delete Journal
-- ❤️ Favorite Journal
-- 🔍 Search Journal
-- 😊 Filter by Mood
-- 🏷 Filter by Tag
-- 📅 Sort Journal
-- 📊 Statistics Dashboard
-- 📄 Export Journal to PDF
-- 📱 Responsive Design
-
----
-
-## 🛠 Tech Stack
+# Tech Stack
 
 - React
-- Vite
+- JavaScript
 - Tailwind CSS
-- React Router DOM
-- Recharts
+- Vite
+- React Router
+- Local Storage
 - jsPDF
-- React Toastify
 
----
+# 🌐 Live Demo
 
-## 🚀 Installation
+Try Journally here:
 
-```bash
+[Open Journally](https://journally-react-7wwn.vercel.app/)
+
+# Repository
+
+[View source code on GitHub](https://github.com/wldaann/journally-react)
+
+# Screenshots
+ Dashboard, Editor, History.
+
+![Journally Dashboard](./public/screenshots/dashboard.png)
+![Journally Dashboard](./public/screenshots/dashboard2.png)
+![Journally Dashboard](./public/screenshots/Editor.png)
+![Journally Dashboard](./public/screenshots/Editor2.png)
+![Journally Dashboard](./public/screenshots/History.png)
+![Journally Dashboard](./public/screenshots/History2.png)
+
+#  Getting Started
+
+### Prerequisites
+
+Before running the project, make sure you have installed:
+
+- Node.js
+- npm
+- Git
+
+ 1. Clone the Repository
 git clone https://github.com/wldaann/journally-react.git
 
+2. Navigate to the project
 cd journally-react
 
+3. Install Dependencies
 npm install
 
+4. Start the Development Server
 npm run dev
-```
 
----
+5. Open the Application
 
-## 📂 Folder Structure
+Open the local development URL shown in the terminal, usually:
+http://localhost:5173
 
-```
-src
+6. Build for Production
+
+To create a production build:
+npm run build
+
+## 📁 Project Structure
+
+BELAJAR-REACT
+daily-journal/
 │
-├── components
-├── pages
-├── services
-├── utils
-├── data
+├── public/
+│   └── screenshots/
+│       ├── dashboard.png
+│       ├── editor.png
+│       └── history.png
 │
-├── App.jsx
-└── main.jsx
-```
+├── src/
+│   ├── components/
+│   │   ├── Footer.jsx
+│   │   ├── JournalCard.jsx
+│   │   ├── MoodCard.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── SearchBar.jsx
+│   │   ├── SortJournal.jsx
+│   │   ├── TagFilter.jsx
+│   │   └── MoodFilter.jsx
+│   │  
+│   ├── pages/
+│   │   ├── Dashboard.jsx
+│   │   ├── History.jsx
+│   │   └── JournalEditor.jsx
+│   │
+│   ├── services/
+│   │   └── journalService.js
+│   │
+│   ├── utils/
+│   │   ├── exportPDF.js
+│   │   └── exportAllPDF.js
+│   │
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── package.json
+├── vite.config.js
+└── README.md
 
----
+## How It Works
 
-## 👨‍💻 Author
+Journally follows a simple client-side data flow:
 
-GitHub
+1. The user creates or edits a journal entry.
+2. Journal data is managed using React state.
+3. Images are processed and compressed on the client side before being stored.
+4. Journal data is saved to the browser's Local Storage.
+5. Dashboard and History retrieve journal data from Local Storage.
+6. Users can search, filter, sort, favorite, edit, or delete journal entries.
+7. Journal entries can also be exported as PDF documents.
 
-https://github.com/wldaann
+## Data Storage
 
----
+Journally currently uses the browser's Local Storage to persist journal data.
+This approach allows the application to work without a backend server or external database.
+Because the data is stored locally in the browser, journal entries are specific to the browser and device where they were created.
 
-Made with ❤️ using React & Tailwind CSS
+## Author
+
+**Wldaann**
+
+GitHub: [@wldaann](https://github.com/wldaann)

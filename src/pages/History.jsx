@@ -72,7 +72,7 @@ function History() {
 
         {/* HISTORY */}
 
-        <div className="mt-10 space-y-6">
+        <div className="mt-10 space-console.logy-6">
 
           {filteredJournals.length === 0 ? (
 
@@ -106,8 +106,18 @@ function History() {
   <div>
 
     <h2 className="text-2xl font-bold">
-      {journal.title}
-    </h2>
+  {journal.title}
+</h2>
+
+{journal.image && (
+  <div className="mt-5 overflow-hidden rounded-2xl">
+    <img
+      src={journal.image}
+      alt={journal.title}
+      className="max-h-[500px] w-full rounded-2xl object-contain"
+    />
+  </div>
+)}
 
 {journal.favorite && (
   <span className="mt-3 inline-block rounded-full bg-pink-100 px-3 py-1 text-xs font-semibold text-pink-600">
