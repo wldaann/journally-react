@@ -229,20 +229,22 @@ and build a better version of yourself every day.
 
     <div className="space-y-5">
 
-      {favoriteJournals.map((journal) => (
+        {favoriteJournals.map((journal) => (
 
-        <JournalCard
-          key={journal.id}
-          id={journal.id}
-          title={journal.title}
-          content={journal.content}
-          mood={journal.mood}
-          tag={journal.tag}
-          date={journal.date}
-          onDelete={handleDelete}
-        />
 
-      ))}
+  <JournalCard
+    key={journal.id}
+    id={journal.id}
+    title={journal.title}
+    content={journal.content}
+    mood={journal.mood}
+    tag={journal.tag}
+    date={journal.date}
+    image={journal.image}
+    onDelete={handleDelete}
+  />
+
+        ))}
 
     </div>
 
@@ -285,43 +287,42 @@ and build a better version of yourself every day.
 
         </div>
 
-        {/* Journal */}
+        
         <div className="mt-12">
 
-          <h2 className="text-2xl font-bold mb-6">
-            📝 Journal Terbaru
-          </h2>
+        {/* Journal */}
 
-          {filteredJournals.length === 0 ? (
+{filteredJournals.length === 0 ? (
 
-            <p className="text-gray-500">
-  {search
-    ? "Journal tidak ditemukan."
-    : "Belum ada journal."}
-</p>
+  <p className="text-gray-500">
+    {search
+      ? "Journal tidak ditemukan."
+      : "Belum ada journal."}
+  </p>
 
-          ) : (
+) : (
 
-            <div className="space-y-5">
+  <div className="space-y-5">
 
-              {filteredJournals.map((journal) => (
-                <JournalCard
-                  key={journal.id}
-                  id={journal.id}
-                  title={journal.title}
-                  content={journal.content}
-                  mood={journal.mood}
-                  tag={journal.tag}
-                  date={journal.date} 
-                  onDelete={handleDelete}
-                />
-              ))}
+    {filteredJournals.map((journal) => (
+      <JournalCard
+        key={journal.id}
+        id={journal.id}
+        title={journal.title}
+        content={journal.content}
+        mood={journal.mood}
+        tag={journal.tag}
+        date={journal.date}
+        image={journal.image}
+        onDelete={handleDelete}
+      />
+    ))}
 
-            </div>
+  </div>
 
-          )}
+)}
 
-        </div>
+</div>
 
       </div>
 

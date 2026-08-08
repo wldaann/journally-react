@@ -7,6 +7,7 @@ function JournalCard({
   mood,
   tag,
   date,
+  image,
   onDelete,
 }) {
 
@@ -39,7 +40,17 @@ function JournalCard({
 
       </div>
 
-      <p className="mt-5 break-words line-clamp-3 leading-7 text-gray-600">
+{image && (
+  <div className="mt-5 overflow-hidden rounded-2xl">
+    <img
+  src={image}
+  alt={title}
+  className="max-h-[500px] w-full rounded-2xl object-contain"
+/>
+  </div>
+)}
+
+<p className="mt-5 break-words line-clamp-3 leading-7 text-gray-600">
   {content}
 </p>
 

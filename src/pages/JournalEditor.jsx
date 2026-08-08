@@ -17,12 +17,13 @@ function JournalEditor() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-console.log(id);
+
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [mood, setMood] = useState("");
   const [tag, setTag] = useState("");
+  const [image, setImage] = useState("");
   useEffect(() => {
 
   if (!id) return;
@@ -30,16 +31,12 @@ console.log(id);
   const journal = getJournalById(id);
 
   if (journal) {
-
-    setTitle(journal.title);
-
-    setContent(journal.content);
-
-    setMood(journal.mood);
-
-    setTag(journal.tag);
-
-  }
+  setTitle(journal.title);
+  setContent(journal.content);
+  setMood(journal.mood);
+  setTag(journal.tag);
+  setImage(journal.image || "");
+}
 
 }, [id]);   
 
@@ -51,33 +48,34 @@ console.log(id);
 
   if (id) {
     const updatedJournal = {
-  id: Number(id),
-  title,
-  content,
-  mood,
-  tag,
-  favorite:
-    getJournalById(id)?.favorite ?? false,
-  date: new Date().toLocaleDateString("id-ID"),
-};
+      id: Number(id),
+      title,
+      content,
+      mood,
+      tag,
+      image,
+      favorite: getJournalById(id)?.favorite ?? false,
+      date: new Date().toLocaleDateString("id-ID"),
+    };
 
     updateJournal(updatedJournal);
 
-   toast.success("Journal berhasil diperbarui! 🎉");
+    toast.success("Journal berhasil diperbarui! 🎉");
   } else {
     const newJournal = {
-  id: Date.now(),
-  title,
-  content,
-  mood,
-  tag,
-  favorite: false,
-  date: new Date().toLocaleDateString("id-ID"),
-};
+      id: Date.now(),
+      title,
+      content,
+      mood,
+      tag,
+      image,
+      favorite: false,
+      date: new Date().toLocaleDateString("id-ID"),
+    };
 
     saveJournal(newJournal);
 
-    alert("Journal berhasil disimpan! 🎉");
+    toast.success("Journal berhasil disimpan! 🎉");
   }
 
   navigate("/");
@@ -200,6 +198,116 @@ focus:ring-4
 focus:ring-blue-100
 "
             />
+
+
+<div className="mt-4">
+  <label className="text-sm font-semibold uppercase tracking-wider text-gray-500">
+    Photo
+  </label>
+
+  <label className="mt-3 flex cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 px-5 py-6 transition hover:border-blue-400 hover:bg-blue-50">
+    <div className="text-center">
+      <p className="text-3xl">📷</p>
+      <p className="mt-2 font-medium text-gray-700">
+        Upload Photo
+      </p>
+      <p className="mt-1 text-xs text-gray-400">
+        JPG, JPEG, PNG, atau WebP • Maks. 5 MB
+      </p>
+    </div>
+
+    <input
+  type="file"
+  accept="image/jpeg,image/png,image/webp"
+  className="hidden"
+  onChange={(e) => {
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  const allowedTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+  ];
+
+  if (!allowedTypes.includes(file.type)) {
+    toast.error("Format foto harus JPG, JPEG, PNG, atau WebP!");
+    e.target.value = "";
+    return;
+  }
+
+  const maxSize = 5 * 1024 * 1024;
+
+  if (file.size > maxSize) {
+    toast.error("Ukuran foto maksimal 5 MB!");
+    e.target.value = "";
+    return;
+  }
+
+  const reader = new FileReader();
+
+reader.onload = (event) => {
+  const img = new Image();
+
+  img.onload = () => {
+    const maxSize = 2000;
+
+    let width = img.width;
+    let height = img.height;
+
+    if (width > maxSize || height > maxSize) {
+      if (width > height) {
+        height = (height / width) * maxSize;
+        width = maxSize;
+      } else {
+        width = (width / height) * maxSize;
+        height = maxSize;
+      }
+    }
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = width;
+    canvas.height = height;
+
+    ctx.drawImage(img, 0, 0, width, height);
+
+    const compressedImage = canvas.toDataURL(
+      "image/jpeg",
+      0.9
+    );
+
+    setImage(compressedImage);
+  };
+
+  img.src = event.target.result;
+};
+
+reader.readAsDataURL(file);
+}}
+/>
+  </label>
+
+ {image && (
+  <div className="mt-4">
+    <img
+      src={image}
+      alt="Preview"
+      className="max-h-80 w-full rounded-2xl object-contain shadow-sm"
+    />
+
+    <button
+      type="button"
+      onClick={() => setImage("")}
+      className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm font-medium text-red-600 transition hover:bg-red-100"
+    >
+      🗑️ Hapus Foto
+    </button>
+  </div>
+)}
+</div>
 
           </div>
 <div className="mt-2 flex justify-end">
@@ -367,8 +475,8 @@ focus:ring-blue-100
         </div>
       </div>
       <Footer />
-    </div>
-  );
+      </div>
+);
 }
 
 export default JournalEditor;
