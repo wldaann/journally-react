@@ -10,8 +10,18 @@ function Statistics() {
   const [journals, setJournals] = useState([]);
 
   useEffect(() => {
-    setJournals(getJournals());
-  }, []);
+  async function loadJournals() {
+    try {
+      const data = await getJournals();
+      setJournals(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Gagal mengambil Statistics:", error);
+      setJournals([]);
+    }
+  }
+
+  loadJournals();
+}, []);
 
   const happyCount = journals.filter(
     (journal) => journal.mood === "😊 Happy"
@@ -37,11 +47,13 @@ function Statistics() {
     total === 0 ? 0 : Math.round((sadCount / total) * 100);
 
   const mostFrequentMood =
-    happyCount >= neutralCount && happyCount >= sadCount
-      ? "😊 Happy"
-      : neutralCount >= happyCount && neutralCount >= sadCount
-      ? "😐 Neutral"
-      : "😔 Sad";
+  total === 0
+    ? "Belum ada data"
+    : happyCount >= neutralCount && happyCount >= sadCount
+    ? "😊 Happy"
+    : neutralCount >= happyCount && neutralCount >= sadCount
+    ? "😐 Neutral"
+    : "😔 Sad";
 
   return (
     <div className="min-h-screen bg-gray-100">

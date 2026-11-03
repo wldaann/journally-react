@@ -11,12 +11,42 @@ function History() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    setJournals(getJournals());
-  }, []);
+  async function loadJournals() {
+    try {
+      const data = await getJournals();
+      setJournals(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Gagal mengambil History:", error);
+      setJournals([]);
+    }
+  }
 
-  const handleFavorite = (id) => {
-  toggleFavorite(id);
-  setJournals(getJournals());
+  loadJournals();
+}, []);
+
+  const handleFavorite = async (id) => {
+  const selectedJournal = journals.find(
+    (journal) => journal.id === id
+  );
+
+  if (!selectedJournal) return;
+
+  try {
+    const newFavoriteStatus = !selectedJournal.favorite;
+
+    await toggleFavorite(id, newFavoriteStatus);
+
+    setJournals((previous) =>
+      previous.map((journal) =>
+        journal.id === id
+          ? { ...journal, favorite: newFavoriteStatus }
+          : journal
+      )
+    );
+  } catch (error) {
+    console.error("Gagal mengubah Favorite:", error);
+    alert(error.message || "Gagal mengubah Favorite.");
+  }
 };
 
   const filteredJournals = journals.filter((journal) =>
@@ -72,7 +102,7 @@ function History() {
 
         {/* HISTORY */}
 
-        <div className="mt-10 space-console.logy-6">
+        <div className="mt-10 space-y-6">
 
           {filteredJournals.length === 0 ? (
 

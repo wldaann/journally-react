@@ -1,3 +1,4 @@
+
 import {
   ResponsiveContainer,
   BarChart,
@@ -25,7 +26,7 @@ function WeeklyChart({ journals }) {
   }));
 
   journals.forEach((journal) => {
-    const date = new Date(journal.id);
+    const date = new Date(`${journal.journalDate}T00:00:00`);
     const dayIndex = date.getDay();
 
     chartData[dayIndex].total += 1;
@@ -33,37 +34,25 @@ function WeeklyChart({ journals }) {
 
   return (
     <div className="rounded-3xl bg-white p-8 shadow-sm border border-gray-100">
-
       <h2 className="text-2xl font-bold mb-8">
         📈 Weekly Activity
       </h2>
 
       <div className="h-[350px]">
-
         <ResponsiveContainer width="100%" height="100%">
-
           <BarChart data={chartData}>
-
             <CartesianGrid strokeDasharray="3 3" />
-
             <XAxis dataKey="day" />
-
             <YAxis allowDecimals={false} />
-
             <Tooltip />
-
             <Bar
               dataKey="total"
               radius={[10, 10, 0, 0]}
               fill="#2563EB"
             />
-
           </BarChart>
-
         </ResponsiveContainer>
-
       </div>
-
     </div>
   );
 }
